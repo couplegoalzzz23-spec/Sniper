@@ -1,62 +1,43 @@
-Nama Lanud,Lokasi,Kode Wilayah,Status
-Lanud Halim Perdanakusuma,kota adm. jakarta timur,31.75,Ditemukan
-Lanud Atang Sendjaja,kab. bogor,32.01,Ditemukan
-Lanud Atang Sendjaja,kota bogor,32.71,Ditemukan
-Lanud Suryadarma,kab. subang,32.13,Ditemukan
-Lanud Husein Sastranegara,kab. bandung,32.04,Ditemukan
-Lanud Husein Sastranegara,kab. bandung barat,32.17,Ditemukan
-Lanud Husein Sastranegara,kota bandung,32.73,Ditemukan
-Lanud Sulaiman,kab. bandung,32.04,Ditemukan
-Lanud Sulaiman,kab. bandung barat,32.17,Ditemukan
-Lanud Sulaiman,kota bandung,32.73,Ditemukan
-Lanud Wiriadinata,kab. tasikmalaya,32.06,Ditemukan
-Lanud Wiriadinata,kota tasikmalaya,32.78,Ditemukan
-Lanud Sugiri Sukani,kab. cirebon,32.09,Ditemukan
-Lanud Sugiri Sukani,kota cirebon,32.74,Ditemukan
-Lanud Roesmin Nurjadin,kota pekanbaru,14.71,Ditemukan
-Lanud Soewondo,kota medan,12.71,Ditemukan
-Lanud Soewondo,kab. sumedang,32.11,Ditemukan
-Lanud Sultan Iskandar Muda,kota banda aceh,11.71,Ditemukan
-Lanud Maimun Saleh,kota sabang,11.72,Ditemukan
-Lanud Sutan Sjahrir,kab. padang lawas utara,12.2,Ditemukan
-Lanud Sutan Sjahrir,kab. padang lawas,12.21,Ditemukan
-Lanud Sutan Sjahrir,kota padang sidempuan,12.77,Ditemukan
-Lanud Sutan Sjahrir,kab. padang pariaman,13.05,Ditemukan
-Lanud Sutan Sjahrir,kota padang,13.71,Ditemukan
-Lanud Sutan Sjahrir,kota padang panjang,13.74,Ditemukan
-Lanud Raja Haji Fisabilillah,kota tanjung pinang,21.72,Ditemukan
-Lanud Hang Nadim,kota batam,21.71,Ditemukan
-Lanud H. AS Hanandjoeddin,kab. belitung,19.02,Ditemukan
-Lanud H. AS Hanandjoeddin,kab. belitung timur,19.06,Ditemukan
-Lanud Sri Mulyono Herlambang,kota palembang,16.71,Ditemukan
-Lanud Pangeran M. Bun Yamin,kab. tulang bawang,18.05,Ditemukan
-Lanud Pangeran M. Bun Yamin,kab. tulang bawang barat,18.12,Ditemukan
-Lanud Supadio,kota pontianak,61.71,Ditemukan
-Lanud Harry Hadisoemantri,kab. bengkayang,61.07,Ditemukan
-Lanud Iskandar,kab. kotawaringin barat,62.01,Ditemukan
-Lanud Syamsudin Noor,kota banjarbaru,63.72,Ditemukan
-Lanud Dhomber,kota balikpapan,64.71,Ditemukan
-Lanud Anang Busra,kota tarakan,65.71,Ditemukan
-Lanud Abdulrachman Saleh,kab. pemalang,33.27,Ditemukan
-Lanud Abdulrachman Saleh,kab. malang,35.07,Ditemukan
-Lanud Abdulrachman Saleh,kota malang,35.73,Ditemukan
-Lanud Iswahjudi,kab. magetan,35.2,Ditemukan
-Lanud Adi Soemarmo,kab. boyolali,33.09,Ditemukan
-Lanud Adisutjipto,kab. sleman,34.04,Ditemukan
-Lanud Jenderal Besar Soedirman,kab. purbalingga,33.03,Ditemukan
-Lanud Muljono,kab. sidoarjo,35.15,Ditemukan
-Lanud El Tari,kab. kupang,53.01,Ditemukan
-Lanud El Tari,kota kupang,53.71,Ditemukan
-Lanud I Gusti Ngurah Rai,kab. badung,51.03,Ditemukan
-Lanud Zainuddin Abdul Madjid,kota mataram,52.71,Ditemukan
-Lanud Sultan Hasanuddin,kab. maros,73.09,Ditemukan
-Lanud Haluoleo,kab. konawe selatan,74.05,Ditemukan
-Lanud Sam Ratulangi,kota manado,71.71,Ditemukan
-Lanud Pattimura,kota ambon,81.71,Ditemukan
-Lanud Leo Wattimena,kab. pulau morotai,82.07,Ditemukan
-Lanud Dominicus Dumatubun,kab. maluku tenggara,81.02,Ditemukan
-Lanud Silas Papare,kab. jayapura,91.03,Ditemukan
-Lanud Silas Papare,kota jayapura,91.71,Ditemukan
-Lanud Manuhua,kab. biak numfor,91.06,Ditemukan
-Lanud Yohanis Kapiyau,kab. mimika,91.09,Ditemukan
-Lanud Johannes Abraham Dimara,kab. merauke,91.01,Ditemukan
+Nama Lanud,ICAO,Lokasi,Kode Wilayah
+Lanud Halim Perdanakusuma,WIHH,Kota Jakarta Timur,31.75
+Lanud Atang Sendjaja,WATS,Kab. Bogor,32.01
+Lanud Suryadarma,WAKM,Kab. Subang,32.13
+Lanud Husein Sastranegara,WIIB,Kota Bandung,32.73
+Lanud Sulaiman,WIDS,Kab. Bandung,32.04
+Lanud Wiriadinata,WICN,Kota Tasikmalaya,32.78
+Lanud Sugiri Sukani,WIAS,Kab. Majalengka,32.10
+Lanud Roesmin Nurjadin,WIBB,Kota Pekanbaru,14.71
+Lanud Soewondo,WIMK,Kota Medan,12.71
+Lanud Sultan Iskandar Muda,WITT,Kab. Aceh Besar,11.06
+Lanud Maimun Saleh,WITN,Kota Sabang,11.72
+Lanud Sutan Sjahrir,WIMG,Kota Padang,13.71
+Lanud Raja Haji Fisabilillah,WIDN,Kota Tanjung Pinang,21.72
+Lanud Hang Nadim,WIDD,Kota Batam,21.71
+Lanud H. AS Hanandjoeddin,WIKT,Kab. Belitung,19.02
+Lanud Sri Mulyono Herlambang,WIPA,Kota Palembang,16.71
+Lanud Pangeran M. Bun Yamin,WIAE,Kab. Tulang Bawang,18.05
+Lanud Supadio,WIOO,Kab. Kubu Raya,61.12
+Lanud Harry Hadisoemantri,WIAG,Kab. Bengkayang,61.07
+Lanud Iskandar,WAGI,Kab. Kotawaringin Barat,62.01
+Lanud Syamsudin Noor,WAOO,Kota Banjarbaru,63.72
+Lanud Dhomber,WALL,Kota Balikpapan,64.71
+Lanud Anang Busra,WAXX,Kota Tarakan,65.71
+Lanud Abdulrachman Saleh,WARA,Kab. Malang,35.07
+Lanud Iswahjudi,WARI,Kab. Magetan,35.20
+Lanud Adi Soemarmo,WAHO,Kab. Boyolali,33.09
+Lanud Adisutjipto,WAHH,Kab. Sleman,34.04
+Lanud Jenderal Besar Soedirman,WAPG,Kab. Purbalingga,33.03
+Lanud Muljono,WARR,Kab. Sidoarjo,35.15
+Lanud El Tari,WILL,Kota Kupang,53.71
+Lanud I Gusti Ngurah Rai,WADD,Kab. Badung,51.03
+Lanud Zainuddin Abdul Madjid,WADL,Kab. Lombok Tengah,52.02
+Lanud Sultan Hasanuddin,WAAA,Kab. Maros,73.09
+Lanud Haluoleo,WAWW,Kab. Konawe Selatan,74.05
+Lanud Sam Ratulangi,WAMM,Kota Manado,71.71
+Lanud Pattimura,WAPP,Kota Ambon,81.71
+Lanud Leo Wattimena,WAEW,Kab. Pulau Morotai,82.07
+Lanud Dominicus Dumatubun,WAPL,Kab. Maluku Tenggara,81.02
+Lanud Silas Papare,WAJJ,Kab. Jayapura,91.03
+Lanud Manuhua,WABB,Kab. Biak Numfor,91.06
+Lanud Yohanis Kapiyau,WAYY,Kab. Mimika,91.09
+Lanud Johannes Abraham Dimara,WAKK,Kab. Merauke,91.01
