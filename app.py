@@ -1,5 +1,5 @@
 import streamlit as st
-st.set_page_config(page_title="Tactical Weather Ops", layout="wide")
+st.set_page_config(page_title="Tactical Weather Ops — BMKG", layout="wide")
 
 import requests
 import re
@@ -12,63 +12,96 @@ import plotly.express as px
 import os
 
 # =====================================
-# CSV LANUD
+# LOAD CSV LANUD
 # =====================================
-LANUD_CSV = "kode_wilayah_lanud_indonesia.csv"
+LANUD_CSV = os.path.join(os.path.dirname(__file__), "kode_wilayah_lanud_indonesia.csv")
 
 @st.cache_data
 def load_lanud_codes():
     try:
-        df = pd.read_csv(LANUD_CSV, header=0)
+        df = pd.read_csv(LANUD_CSV)
     except:
         df = pd.read_csv(LANUD_CSV, header=None)
 
     if df.shape[1] < 2:
-        st.error("CSV harus minimal 2 kolom")
+        st.error("CSV minimal 2 kolom")
         st.stop()
 
-    # ambil kolom berdasarkan posisi
-    lanud = df.iloc[:, 0].astype(str)
-    kode = df.iloc[:, 1].astype(str)
-
-    lokasi = df.iloc[:, 2].astype(str) if df.shape[1] >= 3 else "-"
-
     clean = pd.DataFrame({
-        "Nama Lanud": lanud,
-        "Kode Wilayah": kode,
-        "Lokasi": lokasi
+        "Nama Lanud": df.iloc[:, 0].astype(str).str.strip(),
+        "Kode Wilayah": df.iloc[:, 1].astype(str).str.strip()
     })
+
+    if df.shape[1] >= 3:
+        clean["Lokasi"] = df.iloc[:, 2].astype(str).str.strip()
+    else:
+        clean["Lokasi"] = "-"
 
     return clean
 
 lanud_df = load_lanud_codes()
 
 # =====================================
-# CSS
+# CSS — MILITARY STYLE
 # =====================================
 st.markdown("""
 <style>
-body {background-color:#0b0c0c;color:#cfd2c3;}
-h1,h2,h3 {color:#a9df52;}
-section[data-testid="stSidebar"] {background-color:#111;}
+body {background-color: #0b0c0c; color: #cfd2c3; font-family: Consolas;}
+h1, h2, h3, h4 {color: #a9df52;}
+section[data-testid="stSidebar"] {background-color: #111;}
+.stButton>button {
+    background-color:#1a2a1f;
+    color:#a9df52;
+    border:1px solid #3f4f3f;
+}
+.radar {
+position: relative;
+width: 160px;
+height: 160px;
+border-radius: 50%;
+border:2px solid #33ff55;
+overflow:hidden;
+margin:auto;
+box-shadow:0 0 20px #33ff55;
+}
+.radar:before {
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:50%;
+height:2px;
+background:linear-gradient(90deg,#33ff55,transparent);
+transform-origin:100% 50%;
+animation:sweep 2.5s linear infinite;
+}
+@keyframes sweep {
+from {transform:rotate(0deg);}
+to {transform:rotate(360deg);}
+}
 </style>
 """, unsafe_allow_html=True)
 
+# =====================================
+# TABS
+# =====================================
 tab1, tab2 = st.tabs(["📄 QAM METAR WIBB", "🛰️ BMKG Tactical Forecast"])
 
 # =====================================
 # TAB 1
 # =====================================
 with tab1:
-    st.title("QAM METAR")
+    st.title("QAM METEOROLOGICAL REPORT")
+    st.subheader("Lanud Roesmin Nurjadin — WIBB")
 
     METAR_API = "https://aviationweather.gov/api/data/metar"
 
     def fetch_metar():
-        r = requests.get(METAR_API, params={"ids":"WIBB","hours":0})
+        r = requests.get(METAR_API, params={"ids":"WIBB","hours":0}, timeout=10)
         return r.text.strip()
 
-    st.code(fetch_metar())
+    metar = fetch_metar()
+    st.code(metar)
 
 # =====================================
 # TAB 2
@@ -89,27 +122,29 @@ with tab2:
 
         for group in entry.get("cuaca",[]):
             for obs in group:
-                obs["lat"]=lokasi.get("lat")
-                obs["lon"]=lokasi.get("lon")
-                obs["kotkab"]=lokasi.get("kotkab")
-                rows.append(obs)
+                r=obs.copy()
+                r["lat"]=lokasi.get("lat")
+                r["lon"]=lokasi.get("lon")
+                r["kotkab"]=lokasi.get("kotkab")
+                rows.append(r)
 
         df=pd.DataFrame(rows)
 
-        for c in ["t","tp","ws","hu"]:
+        for c in ["t","tp","ws","hu","wd_deg"]:
             if c in df.columns:
-                df[c]=pd.to_numeric(df[c],errors="coerce")
+                df[c]=pd.to_numeric(df[c], errors="coerce")
 
         df["local_datetime_dt"]=pd.to_datetime(df["local_datetime"])
-
         return df
 
+    # =====================================
     # SIDEBAR
+    # =====================================
     with st.sidebar:
         st.title("🛰️ Tactical Controls")
 
         selected_lanud = st.selectbox(
-            "✈️ Select Lanud",
+            "✈️ Select Indonesian Air Base",
             lanud_df["Nama Lanud"]
         )
 
@@ -124,68 +159,117 @@ Lanud: {row['Nama Lanud']}
 
 Lokasi: {row['Lokasi']}
 
-Kode: {adm1}
+Kode BMKG: {adm1}
 """)
+
+        st.markdown("<div class='radar'></div>", unsafe_allow_html=True)
 
         show_map = st.checkbox("Show Map", True)
         show_table = st.checkbox("Show Table", False)
 
-    st.title("Tactical Weather Dashboard")
+    # =====================================
+    # FETCH DATA
+    # =====================================
+    st.title("Tactical Weather Operations Dashboard")
 
     raw = fetch_forecast(adm1)
 
-    entries = raw.get("data",[])
+    entries = raw.get("data", [])
 
     if not entries:
-        st.warning("No data")
+        st.warning("No data available")
         st.stop()
 
-    mapping={}
+    mapping = {}
 
     for e in entries:
         lok=e.get("lokasi",{})
-        label=lok.get("kotkab","Unknown")
+        label=lok.get("kotkab") or "Unknown"
         mapping[label]=e
 
-    loc_choice=st.selectbox(
-        "Select Location",
+    loc_choice = st.selectbox(
+        "🎯 Select Location",
         list(mapping.keys())
     )
 
-    df=flatten(mapping[loc_choice])
+    selected_entry = mapping[loc_choice]
 
-    df["ws_kt"]=df["ws"]*MS_TO_KT
+    df = flatten(selected_entry)
 
-    now=df.iloc[0]
+    if df.empty:
+        st.warning("No weather data")
+        st.stop()
 
-    c1,c2,c3,c4=st.columns(4)
+    df["ws_kt"] = df["ws"] * MS_TO_KT
 
-    c1.metric("TEMP",f"{now['t']}°C")
-    c2.metric("HUMIDITY",f"{now['hu']}%")
-    c3.metric("WIND",f"{now['ws_kt']:.1f} KT")
-    c4.metric("RAIN",f"{now['tp']} mm")
+    now = df.iloc[0]
 
-    st.plotly_chart(
-        px.line(df,x="local_datetime_dt",y="t"),
-        use_container_width=True
-    )
+    # =====================================
+    # METRICS
+    # =====================================
+    st.subheader("⚡ Tactical Weather Status")
 
-    st.plotly_chart(
-        px.line(df,x="local_datetime_dt",y="ws_kt"),
-        use_container_width=True
-    )
+    c1,c2,c3,c4 = st.columns(4)
 
+    c1.metric("TEMP", f"{now['t']}°C")
+    c2.metric("HUMIDITY", f"{now['hu']}%")
+    c3.metric("WIND", f"{now['ws_kt']:.1f} KT")
+    c4.metric("RAIN", f"{now['tp']} mm")
+
+    # =====================================
+    # TRENDS
+    # =====================================
+    st.subheader("📊 Parameter Trends")
+
+    col1,col2 = st.columns(2)
+
+    with col1:
+        st.plotly_chart(
+            px.line(df, x="local_datetime_dt", y="t", title="Temperature"),
+            use_container_width=True
+        )
+
+    with col2:
+        st.plotly_chart(
+            px.line(df, x="local_datetime_dt", y="ws_kt", title="Wind Speed"),
+            use_container_width=True
+        )
+
+    # =====================================
+    # MAP
+    # =====================================
     if show_map:
+        st.subheader("🗺️ Tactical Map")
+
         st.map(pd.DataFrame({
             "lat":[float(df.iloc[0]["lat"])],
             "lon":[float(df.iloc[0]["lon"])]
         }))
 
+    # =====================================
+    # TABLE
+    # =====================================
     if show_table:
+        st.subheader("📋 Forecast Table")
         st.dataframe(df)
 
+    # =====================================
+    # DOWNLOAD
+    # =====================================
+    st.subheader("💾 Export Data")
+
     st.download_button(
-        "Download CSV",
+        "⬇️ Download CSV",
         df.to_csv(index=False),
-        file_name=f"{adm1}.csv"
+        file_name=f"{adm1}_{loc_choice}.csv"
     )
+
+    # =====================================
+    # FOOTER
+    # =====================================
+    st.markdown("""
+---
+<div style="text-align:center;color:#7a7;">
+Tactical Weather Ops Dashboard — BMKG
+</div>
+""", unsafe_allow_html=True)
