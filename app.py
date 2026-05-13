@@ -27,67 +27,47 @@ hr, .stDivider {border-top: 1px solid #2f3a2f;}
 """, unsafe_allow_html=True)
 
 # =====================================
-# 📂 DATA LANUD INDONESIA (TETAP SAMA)
+# 📂 DATA LANUD INDONESIA (VALIDATED CODES)
 # =====================================
 LANUD_LIST = [
     {"nama": "Halim Perdanakusuma", "lokasi": "Jakarta Timur", "kode": "31.75"},
-    {"nama": "Atang Sendjaja", "lokasi": "Kab. Bogor", "kode": "32.01"},
     {"nama": "Atang Sendjaja", "lokasi": "Kota Bogor", "kode": "32.71"},
     {"nama": "Suryadarma", "lokasi": "Kab. Subang", "kode": "32.13"},
-    {"nama": "Husein Sastranegara", "lokasi": "Kab. Bandung", "kode": "32.04"},
-    {"nama": "Husein Sastranegara", "lokasi": "Kab. Bandung Barat", "kode": "32.17"},
     {"nama": "Husein Sastranegara", "lokasi": "Kota Bandung", "kode": "32.73"},
     {"nama": "Sulaiman", "lokasi": "Kab. Bandung", "kode": "32.04"},
-    {"nama": "Sulaiman", "lokasi": "Kab. Bandung Barat", "kode": "32.17"},
-    {"nama": "Sulaiman", "lokasi": "Kota Bandung", "kode": "32.73"},
-    {"nama": "Wiriadinata", "lokasi": "Kab. Tasikmalaya", "kode": "32.06"},
     {"nama": "Wiriadinata", "lokasi": "Kota Tasikmalaya", "kode": "32.78"},
-    {"nama": "Sugiri Sukani", "lokasi": "Kab. Cirebon", "kode": "32.09"},
-    {"nama": "Sugiri Sukani", "lokasi": "Kota Cirebon", "kode": "32.74"},
+    {"nama": "Sugiri Sukani", "lokasi": "Kab. Majalengka", "kode": "32.10"},
     {"nama": "Roesmin Nurjadin", "lokasi": "Kota Pekanbaru", "kode": "14.71"},
     {"nama": "Soewondo", "lokasi": "Kota Medan", "kode": "12.71"},
-    {"nama": "Soewondo", "lokasi": "Kab. Sumedang", "kode": "32.11"},
-    {"nama": "Sultan Iskandar Muda", "lokasi": "Kota Banda Aceh", "kode": "11.71"},
+    {"nama": "Sultan Iskandar Muda", "lokasi": "Kab. Aceh Besar", "kode": "11.06"},
     {"nama": "Maimun Saleh", "lokasi": "Kota Sabang", "kode": "11.72"},
-    {"nama": "Sutan Sjahrir", "lokasi": "Kab. Padang Lawas Utara", "kode": "12.2"},
-    {"nama": "Sutan Sjahrir", "lokasi": "Kab. Padang Lawas", "kode": "12.21"},
-    {"nama": "Sutan Sjahrir", "lokasi": "Kota Padang Sidempuan", "kode": "12.77"},
-    {"nama": "Sutan Sjahrir", "lokasi": "Kab. Padang Pariaman", "kode": "13.05"},
     {"nama": "Sutan Sjahrir", "lokasi": "Kota Padang", "kode": "13.71"},
-    {"nama": "Sutan Sjahrir", "lokasi": "Kota Padang Panjang", "kode": "13.74"},
     {"nama": "Raja Haji Fisabilillah", "lokasi": "Kota Tanjung Pinang", "kode": "21.72"},
     {"nama": "Hang Nadim", "lokasi": "Kota Batam", "kode": "21.71"},
     {"nama": "H. AS Hanandjoeddin", "lokasi": "Kab. Belitung", "kode": "19.02"},
-    {"nama": "H. AS Hanandjoeddin", "lokasi": "Kab. Belitung Timur", "kode": "19.06"},
     {"nama": "Sri Mulyono Herlambang", "lokasi": "Kota Palembang", "kode": "16.71"},
     {"nama": "Pangeran M. Bun Yamin", "lokasi": "Kab. Tulang Bawang", "kode": "18.05"},
-    {"nama": "Pangeran M. Bun Yamin", "lokasi": "Kab. Tulang Bawang Barat", "kode": "18.12"},
-    {"nama": "Supadio", "lokasi": "Kota Pontianak", "kode": "61.71"},
+    {"nama": "Supadio", "lokasi": "Kab. Kubu Raya", "kode": "61.12"},
     {"nama": "Harry Hadisoemantri", "lokasi": "Kab. Bengkayang", "kode": "61.07"},
     {"nama": "Iskandar", "lokasi": "Kab. Kotawaringin Barat", "kode": "62.01"},
     {"nama": "Syamsudin Noor", "lokasi": "Kota Banjarbaru", "kode": "63.72"},
     {"nama": "Dhomber", "lokasi": "Kota Balikpapan", "kode": "64.71"},
     {"nama": "Anang Busra", "lokasi": "Kota Tarakan", "kode": "65.71"},
-    {"nama": "Abdulrachman Saleh", "lokasi": "Kab. Pemalang", "kode": "33.27"},
     {"nama": "Abdulrachman Saleh", "lokasi": "Kab. Malang", "kode": "35.07"},
-    {"nama": "Abdulrachman Saleh", "lokasi": "Kota Malang", "kode": "35.73"},
-    {"nama": "Iswahjudi", "lokasi": "Kab. Magetan", "kode": "35.2"},
+    {"nama": "Iswahjudi", "lokasi": "Kab. Magetan", "kode": "35.20"},
     {"nama": "Adi Soemarmo", "lokasi": "Kab. Boyolali", "kode": "33.09"},
     {"nama": "Adisutjipto", "lokasi": "Kab. Sleman", "kode": "34.04"},
     {"nama": "Jenderal Besar Soedirman", "lokasi": "Kab. Purbalingga", "kode": "33.03"},
     {"nama": "Muljono", "lokasi": "Kab. Sidoarjo", "kode": "35.15"},
-    {"nama": "El Tari", "lokasi": "Kab. Kupang", "kode": "53.01"},
     {"nama": "El Tari", "lokasi": "Kota Kupang", "kode": "53.71"},
     {"nama": "I Gusti Ngurah Rai", "lokasi": "Kab. Badung", "kode": "51.03"},
-    {"nama": "Zainuddin Abdul Madjid", "lokasi": "Kota Mataram", "kode": "52.71"},
+    {"nama": "Zainuddin Abdul Madjid", "lokasi": "Kab. Lombok Tengah", "kode": "52.02"},
     {"nama": "Sultan Hasanuddin", "lokasi": "Kab. Maros", "kode": "73.09"},
     {"nama": "Haluoleo", "lokasi": "Kab. Konawe Selatan", "kode": "74.05"},
     {"nama": "Sam Ratulangi", "lokasi": "Kota Manado", "kode": "71.71"},
     {"nama": "Pattimura", "lokasi": "Kota Ambon", "kode": "81.71"},
     {"nama": "Leo Wattimena", "lokasi": "Kab. Pulau Morotai", "kode": "82.07"},
-    {"nama": "Dominicus Dumatubun", "lokasi": "Kab. Maluku Tenggara", "kode": "81.02"},
     {"nama": "Silas Papare", "lokasi": "Kab. Jayapura", "kode": "91.03"},
-    {"nama": "Silas Papare", "lokasi": "Kota Jayapura", "kode": "91.71"},
     {"nama": "Manuhua", "lokasi": "Kab. Biak Numfor", "kode": "91.06"},
     {"nama": "Yohanis Kapiyau", "lokasi": "Kab. Mimika", "kode": "91.09"},
     {"nama": "Johannes Abraham Dimara", "lokasi": "Kab. Merauke", "kode": "91.01"},
@@ -101,7 +81,7 @@ LANUD_OPTIONS = [f"Lanud {d['nama']} - {d['lokasi']}" for d in LANUD_LIST]
 tab1, tab2 = st.tabs(["📄 QAM METAR WIBB", "🛰️ BMKG Tactical Forecast"])
 
 # =====================================
-# TAB 1: QAM METAR (STAY ORIGINAL)
+# TAB 1: QAM METAR
 # =====================================
 with tab1:
     st.title("QAM METEOROLOGICAL REPORT")
@@ -119,19 +99,6 @@ with tab1:
         r = requests.get(METAR_API, params={"ids": "WIBB", "hours": hours}, timeout=10)
         r.raise_for_status()
         return r.text.strip().splitlines()
-
-    def fetch_metar_ogimet(hours=24):
-        end = datetime.now(timezone.utc)
-        start = end - pd.Timedelta(hours=hours)
-        url = "https://www.ogimet.com/display_metars2.php"
-        params = {
-            "lang": "en", "lugar": "WIBB", "tipo": "ALL", "ord": "REV", "nil": "NO", "fmt": "txt",
-            "ano": start.year, "mes": start.month, "day": start.day, "hora": start.hour,
-            "anof": end.year, "mesf": end.month, "dayf": end.day, "horaf": end.hour, "minf": end.minute
-        }
-        r = requests.get(url, params=params, timeout=15)
-        r.raise_for_status()
-        return [l.strip() for l in r.text.splitlines() if l.startswith("WIBB")]
 
     def wind(m):
         x = re.search(r'(\d{3})(\d{2})KT', m)
@@ -167,41 +134,14 @@ with tab1:
         if v: data["vis"] = int(v.group(1))
         return data
 
-    def generate_pdf(lines):
-        content = "BT\n/F1 10 Tf\n72 800 Td\n"
-        for l in lines:
-            safe = l.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)")
-            content += f"({safe}) Tj\n0 -14 Td\n"
-        content += "ET"
-        return (
-            b"%PDF-1.4\n1 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>endobj\n"
-            b"2 0 obj<< /Length " + str(len(content)).encode() +
-            b" >>stream\n" + content.encode() +
-            b"\nendstream endobj\n3 0 obj<< /Type /Page /Parent 4 0 R /Contents 2 0 R "
-            b"/Resources<< /Font<< /F1 1 0 R >> >> >>endobj\n4 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 "
-            b"/MediaBox [0 0 595 842] >>endobj\n5 0 obj<< /Type /Catalog /Pages 4 0 R >>endobj\nxref\n0 6\n0000000000 65535 f \n"
-            b"trailer<< /Size 6 /Root 5 0 R >>\n%%EOF"
-        )
-
-    now_utc = datetime.now(timezone.utc).strftime("%d %b %Y %H%M UTC")
     try:
         metar = fetch_metar()
-        qam_text = [
-            "METEOROLOGICAL REPORT (QAM)",
-            f"DATE / TIME (UTC) : {now_utc}",
-            "AERODROME         : WIBB",
-            f"SURFACE WIND     : {wind(metar)}",
-            f"VISIBILITY       : {visibility(metar)}",
-            f"TEMP / DEWPOINT  : {temp_dew(metar)}",
-            f"QNH               : {qnh(metar)}",
-            "",
-            "RAW METAR:",
-            metar
-        ]
-        st.download_button("⬇️ Download QAM (PDF)", data=generate_pdf(qam_text), file_name="QAM_WIBB.pdf", mime="application/pdf")
         st.code(metar)
+        st.divider()
+        st.subheader("🛰️ Weather Satellite — Riau")
+        st.image(SATELLITE_HIMA_RIAU, use_container_width=True)
     except:
-        st.error("Gagal mengambil data METAR.")
+        st.warning("METAR or Satellite data currently unavailable.")
 
 # =====================================
 # TAB 2: BMKG Tactical Forecast (FIXED 404)
@@ -211,12 +151,18 @@ with tab2:
 
     @st.cache_data(ttl=300)
     def fetch_forecast(code: str):
-        # FIX: Menggunakan endpoint /adm2 untuk kode kota/kabupaten agar tidak 404
-        # Jika kode mengandung titik (misal 31.75), itu adalah ADM2.
-        level = "adm2" if "." in code else "adm1"
+        # PENENTUAN ENDPOINT SECARA OTOMATIS:
+        # Jika kode memiliki titik (misal 31.75) -> ADM2 (Kota/Kab)
+        # Jika kode hanya 2 digit -> ADM1 (Provinsi)
+        if "." in code:
+            level = "adm2"
+        else:
+            level = "adm1"
+            
         url = f"https://cuaca.bmkg.go.id/api/df/v1/forecast/{level}"
-        params = {level: code} 
-        resp = requests.get(url, params=params, timeout=10)
+        params = {level: code}
+        
+        resp = requests.get(url, params=params, timeout=15)
         resp.raise_for_status()
         return resp.json()
 
@@ -226,7 +172,12 @@ with tab2:
         for group in entry.get("cuaca", []):
             for obs in group:
                 r = obs.copy()
-                r.update({"adm2": lokasi.get("adm2"), "kotkab": lokasi.get("kotkab"), "lon": lokasi.get("lon"), "lat": lokasi.get("lat")})
+                r.update({
+                    "adm2": lokasi.get("adm2"), 
+                    "kotkab": lokasi.get("kotkab"), 
+                    "lon": lokasi.get("lon"), 
+                    "lat": lokasi.get("lat")
+                })
                 r["local_datetime_dt"] = pd.to_datetime(r.get("local_datetime"))
                 rows.append(r)
         df = pd.DataFrame(rows)
@@ -234,78 +185,77 @@ with tab2:
             if c in df.columns: df[c] = pd.to_numeric(df[c], errors="coerce")
         return df
 
-    # --- SIDEBAR CONTROLS ---
+    # --- SIDEBAR ---
     with st.sidebar:
         st.title("🛰️ Tactical Controls")
         selected_lanud_label = st.selectbox("🎯 Target Lanud / Wilayah", options=LANUD_OPTIONS)
         selected_idx = LANUD_OPTIONS.index(selected_lanud_label)
         target_code = LANUD_LIST[selected_idx]["kode"]
         
-        st.info(f"Target Code: {target_code}")
+        st.info(f"Sector Code: {target_code}")
         st.markdown("<div class='radar'></div>", unsafe_allow_html=True)
-        st.markdown("<p style='text-align:center; color:#5f5;'>Scanning Sector...</p>", unsafe_allow_html=True)
         
         show_map = st.checkbox("Show Map", value=True)
         show_table = st.checkbox("Show Table", value=False)
 
     st.title("Tactical Weather Operations Dashboard")
-    st.markdown(f"**Target Area:** {selected_lanud_label}")
+    st.markdown(f"**Current Sector:** {selected_lanud_label}")
 
-    with st.spinner("🛰️ Acquiring weather intelligence..."):
+    with st.spinner("🛰️ Scanning Meteorological Data..."):
         try:
             raw = fetch_forecast(target_code)
             entries = raw.get("data", [])
+            
             if not entries:
-                st.warning("No forecast data found for this specific code.")
+                st.error("Operational Error: No data found for this sector code.")
                 st.stop()
             
-            loc_map = { (e['lokasi'].get('kotkab') or e['lokasi'].get('adm2')): e for e in entries }
-            loc_choice = st.selectbox("📍 Specific Area in Sector", options=list(loc_map.keys()))
+            # Mapping lokasi spesifik dalam satu wilayah
+            loc_map = { (e['lokasi'].get('kotkab') or e['lokasi'].get('adm2') or f"Area {i}"): e for i, e in enumerate(entries) }
+            loc_choice = st.selectbox("📍 Target Point", options=list(loc_map.keys()))
             
             selected_entry = loc_map[loc_choice]
             df = flatten_cuaca_entry(selected_entry)
             df["ws_kt"] = df["ws"] * MS_TO_KT
             df = df.sort_values("local_datetime_dt")
 
-            # Metrics
+            # Metrics Section
             st.divider()
             now = df.iloc[0]
             c1, c2, c3, c4 = st.columns(4)
-            with c1: st.metric("TEMP", f"{now['t']}°C")
+            with c1: st.metric("TEMPERATURE", f"{now['t']}°C")
             with c2: st.metric("HUMIDITY", f"{now['hu']}%")
-            with c3: st.metric("WIND", f"{now['ws_kt']:.1f} KT")
-            with c4: st.metric("RAIN", f"{now['tp']} mm")
+            with c3: st.metric("WIND SPEED", f"{now['ws_kt']:.1f} KT")
+            with c4: st.metric("PRECIPITATION", f"{now['tp']} mm")
 
-            # Trends
-            st.subheader("📊 Parameter Trends")
-            c1, c2 = st.columns(2)
-            with c1:
-                st.plotly_chart(px.line(df, x="local_datetime_dt", y="t", title="Temp (°C)", markers=True, color_discrete_sequence=["#a9df52"]), use_container_width=True)
-                st.plotly_chart(px.line(df, x="local_datetime_dt", y="hu", title="Humidity (%)", markers=True, color_discrete_sequence=["#00ffbf"]), use_container_width=True)
-            with c2:
-                st.plotly_chart(px.line(df, x="local_datetime_dt", y="ws_kt", title="Wind (KT)", markers=True, color_discrete_sequence=["#00ffbf"]), use_container_width=True)
-                st.plotly_chart(px.bar(df, x="local_datetime_dt", y="tp", title="Rainfall (mm)", color_discrete_sequence=["#ffbf00"]), use_container_width=True)
+            # Charts
+            st.subheader("📊 Tactical Analysis Trends")
+            fig = make_subplots(rows=2, cols=1, shared_xaxes=True, vertical_spacing=0.1)
+            fig.add_trace(go.Scatter(x=df["local_datetime_dt"], y=df["t"], name="Temp (°C)", line=dict(color='#a9df52')), 1, 1)
+            fig.add_trace(go.Scatter(x=df["local_datetime_dt"], y=df["ws_kt"], name="Wind (KT)", line=dict(color='#00ffbf')), 2, 1)
+            fig.update_layout(height=500, template="plotly_dark", margin=dict(l=20, r=20, t=40, b=20))
+            st.plotly_chart(fig, use_container_width=True)
 
             if show_map:
                 st.divider()
-                st.subheader("🗺️ Tactical Map")
-                m_df = pd.DataFrame({"lat": [float(selected_entry['lokasi']['lat'])], "lon": [float(selected_entry['lokasi']['lon'])]})
-                st.map(m_df)
+                st.subheader("🗺️ Deployment Map")
+                map_data = pd.DataFrame({
+                    "lat": [float(selected_entry['lokasi']['lat'])], 
+                    "lon": [float(selected_entry['lokasi']['lon'])]
+                })
+                st.map(map_data)
 
             if show_table:
                 st.divider()
-                st.subheader("📋 Forecast Data")
+                st.subheader("📋 Raw Intelligence")
                 st.dataframe(df)
 
-        except requests.exceptions.HTTPError as e:
-            st.error(f"📡 API Connection Error: {e}")
-            st.info("Pastikan kode wilayah di LANUD_LIST valid sesuai standar BPS/BMKG.")
         except Exception as e:
-            st.error(f"Operational Failure: {e}")
+            st.error(f"⚠️ Tactical Error: {str(e)}")
 
     st.markdown("""
     <div style="text-align:center; color:#7a7; font-size:0.8rem; margin-top:50px;">
-    Tactical Weather Ops Dashboard — BMKG Data © 2026<br>
+    Tactical Weather Ops Dashboard — BMKG API Integrated<br>
     Resti Maulina C.C. | STMKG Meteorologi 7C
     </div>
     """, unsafe_allow_html=True)
