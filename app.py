@@ -27,7 +27,7 @@ hr, .stDivider {border-top: 1px solid #2f3a2f;}
 """, unsafe_allow_html=True)
 
 # =====================================
-# 📂 DATA LANUD INDONESIA
+# 📂 DATA LANUD INDONESIA (TETAP SAMA)
 # =====================================
 LANUD_LIST = [
     {"nama": "Halim Perdanakusuma", "lokasi": "Jakarta Timur", "kode": "31.75"},
@@ -93,7 +93,6 @@ LANUD_LIST = [
     {"nama": "Johannes Abraham Dimara", "lokasi": "Kab. Merauke", "kode": "91.01"},
 ]
 
-# Formatting for Selectbox
 LANUD_OPTIONS = [f"Lanud {d['nama']} - {d['lokasi']}" for d in LANUD_LIST]
 
 # =====================================
@@ -185,60 +184,39 @@ with tab1:
         )
 
     now_utc = datetime.now(timezone.utc).strftime("%d %b %Y %H%M UTC")
-    metar = fetch_metar()
-    qam_text = [
-        "METEOROLOGICAL REPORT (QAM)",
-        f"DATE / TIME (UTC) : {now_utc}",
-        "AERODROME         : WIBB",
-        f"SURFACE WIND     : {wind(metar)}",
-        f"VISIBILITY       : {visibility(metar)}",
-        f"TEMP / DEWPOINT  : {temp_dew(metar)}",
-        f"QNH               : {qnh(metar)}",
-        "",
-        "RAW METAR:",
-        metar
-    ]
-
-    st.download_button("⬇️ Download QAM (PDF)", data=generate_pdf(qam_text), file_name="QAM_WIBB.pdf", mime="application/pdf")
-    st.code(metar)
-    st.divider()
-    st.subheader("🛰️ Weather Satellite — Himawari-8 (Infrared)")
     try:
-        img = requests.get(SATELLITE_HIMA_RIAU, timeout=10, headers={"User-Agent": "Mozilla/5.0"})
-        st.image(img.content, use_container_width=True)
+        metar = fetch_metar()
+        qam_text = [
+            "METEOROLOGICAL REPORT (QAM)",
+            f"DATE / TIME (UTC) : {now_utc}",
+            "AERODROME         : WIBB",
+            f"SURFACE WIND     : {wind(metar)}",
+            f"VISIBILITY       : {visibility(metar)}",
+            f"TEMP / DEWPOINT  : {temp_dew(metar)}",
+            f"QNH               : {qnh(metar)}",
+            "",
+            "RAW METAR:",
+            metar
+        ]
+        st.download_button("⬇️ Download QAM (PDF)", data=generate_pdf(qam_text), file_name="QAM_WIBB.pdf", mime="application/pdf")
+        st.code(metar)
     except:
-        st.warning("Satellite imagery unavailable.")
-
-    st.divider()
-    st.subheader("📊 Historical METAR Meteogram — Last 24h")
-    raw = fetch_metar_history(24)
-    if not raw or len(raw) < 2: raw = fetch_metar_ogimet(24)
-    df_h = pd.DataFrame([parse_numeric_metar(m) for m in raw if parse_numeric_metar(m)])
-    if not df_h.empty:
-        df_h.sort_values("time", inplace=True)
-        fig = make_subplots(rows=5, cols=1, shared_xaxes=True, subplot_titles=["Temp/Dew (°C)","Wind (kt)","QNH (hPa)","Vis (m)","Weather"])
-        fig.add_trace(go.Scatter(x=df_h["time"], y=df_h["temp"], name="Temp"), 1, 1)
-        fig.add_trace(go.Scatter(x=df_h["time"], y=df_h["dew"], name="Dew"), 1, 1)
-        fig.add_trace(go.Scatter(x=df_h["time"], y=df_h["wind"], name="Wind"), 2, 1)
-        fig.add_trace(go.Scatter(x=df_h["time"], y=df_h["qnh"], name="QNH"), 3, 1)
-        fig.add_trace(go.Scatter(x=df_h["time"], y=df_h["vis"], name="Visibility"), 4, 1)
-        fig.add_trace(go.Scatter(x=df_h["time"], y=df_h["RA"].astype(int), mode="markers", name="RA"), 5, 1)
-        fig.add_trace(go.Scatter(x=df_h["time"], y=df_h["TS"].astype(int), mode="markers", name="TS"), 5, 1)
-        fig.update_layout(height=800, template="plotly_dark")
-        st.plotly_chart(fig, use_container_width=True)
+        st.error("Gagal mengambil data METAR.")
 
 # =====================================
-# TAB 2: BMKG Tactical Forecast (MODIFIED)
+# TAB 2: BMKG Tactical Forecast (FIXED 404)
 # =====================================
 with tab2:
-    API_BASE = "https://cuaca.bmkg.go.id/api/df/v1/forecast/adm"
     MS_TO_KT = 1.94384
 
     @st.cache_data(ttl=300)
     def fetch_forecast(code: str):
-        # API BMKG /adm mendukung kode provinsi (ADM1) maupun kota (ADM2)
-        params = {"adm": code} 
-        resp = requests.get(API_BASE, params=params, timeout=10)
+        # FIX: Menggunakan endpoint /adm2 untuk kode kota/kabupaten agar tidak 404
+        # Jika kode mengandung titik (misal 31.75), itu adalah ADM2.
+        level = "adm2" if "." in code else "adm1"
+        url = f"https://cuaca.bmkg.go.id/api/df/v1/forecast/{level}"
+        params = {level: code} 
+        resp = requests.get(url, params=params, timeout=10)
         resp.raise_for_status()
         return resp.json()
 
@@ -259,11 +237,7 @@ with tab2:
     # --- SIDEBAR CONTROLS ---
     with st.sidebar:
         st.title("🛰️ Tactical Controls")
-        
-        # MODIFIKASI: Menggunakan Selectbox untuk daftar Lanud
         selected_lanud_label = st.selectbox("🎯 Target Lanud / Wilayah", options=LANUD_OPTIONS)
-        
-        # Mendapatkan kode dari pilihan
         selected_idx = LANUD_OPTIONS.index(selected_lanud_label)
         target_code = LANUD_LIST[selected_idx]["kode"]
         
@@ -282,10 +256,9 @@ with tab2:
             raw = fetch_forecast(target_code)
             entries = raw.get("data", [])
             if not entries:
-                st.warning("No forecast data available for this sector.")
+                st.warning("No forecast data found for this specific code.")
                 st.stop()
             
-            # Mapping locations dalam satu ADM
             loc_map = { (e['lokasi'].get('kotkab') or e['lokasi'].get('adm2')): e for e in entries }
             loc_choice = st.selectbox("📍 Specific Area in Sector", options=list(loc_map.keys()))
             
@@ -324,6 +297,9 @@ with tab2:
                 st.subheader("📋 Forecast Data")
                 st.dataframe(df)
 
+        except requests.exceptions.HTTPError as e:
+            st.error(f"📡 API Connection Error: {e}")
+            st.info("Pastikan kode wilayah di LANUD_LIST valid sesuai standar BPS/BMKG.")
         except Exception as e:
             st.error(f"Operational Failure: {e}")
 
